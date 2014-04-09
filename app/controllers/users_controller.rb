@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :authorize, only: [:show, :edit, :update, :delete, :destroy]
+
   def index
     @users = User.all
   end
@@ -11,11 +13,39 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "Your login has been created"
-      redirect_to users_path
+      redirect_to user_path(@user)
     else
       render "new"
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      session[:user_id] = @user.id
+      flash[:notice] = "Profile Updated"
+      redirect_to user_path(@user)
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    session[:user_id] = nil
+    @user.destroy
+    flash[:notice] = "Your profile has been deleted"
+    redirect_to users_path
   end
 
   private

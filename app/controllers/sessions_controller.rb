@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def index
-    @sessions = Session.all
+
   end
 
   def new
@@ -18,6 +18,12 @@ class SessionsController < ApplicationController
       flash.now.alert = "Username or password is invalid"
       render "new"
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    flash[:notice] = "logged out"
+    redirect_to sessions_path
   end
 
 end
