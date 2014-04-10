@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @photos = @user.photos.all
   end
 
   def edit
@@ -45,12 +46,12 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     @user.destroy
     flash[:notice] = "Your profile has been deleted"
-    redirect_to users_path
+    redirect_to :back
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :avatar)
   end
 
 end
