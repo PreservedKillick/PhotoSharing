@@ -22,9 +22,11 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'launchy'
 end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'faker'
 end
