@@ -1,0 +1,11 @@
+<% content_for(:title, "Edit Photo | Photoshare") %>
+
+<h2>Edit Your Photo</h2>
+
+<%= form_for [@user, @photo], :html => { :multipart => true } do |form| %>
+  <div class="form-group">
+    <%= form.label :file_name %>
+    <%= form.text_field :image_file_name %>
+  </div>
+  <%= form.submit(:class => 'btn btn-warning') %>
+<% end %>
