@@ -20,6 +20,7 @@ Photo sharing app
 
 
 *April 10, 2014, continuing project*
+
 cloned repo, appears to be missing some files that were created/worked on on 4/9 in afternoon.  missing files include: user views, session views, photo model, some migration records, photo specs, photos controller.
 
 * full functionality for create and show.
